@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import Calendar from "../../Components/Calendar/Calendar";
 
 export default function Home() {
   // states
@@ -11,24 +12,16 @@ export default function Home() {
   //store
   const dispatch = useDispatch();
 
-  // reducer pour test
-  const {
-    formData: { firstNameData, lastNameData },
-  } = useSelector((state) => ({
-    ...state.formReducer,
-  }));
-
   // Fonctions
-  const getDataEmployee = (e) => {
+  const saveEmployee = async (e) => {
     e.preventDefault();
+    console.log("Dans save employé");
+    const user = { firstName, lastName };
     dispatch({
-      type: "GETFORMDATA",
-      payload: [firstName, lastName],
+      type: "ADDEMPLOYEE",
+      payload: user,
     });
-    console.log("success");
-    // test du reducer
-    console.log(firstNameData);
-    console.log(lastNameData);
+    console.log(user);
   };
 
   return (
@@ -44,7 +37,7 @@ export default function Home() {
         <h2>Create Employee</h2>
         <form
           action=""
-          onSubmit={getDataEmployee}
+          onSubmit={saveEmployee}
           method="post"
           id="create-employee"
         >
@@ -98,6 +91,9 @@ export default function Home() {
       <div id="confirmation" className="modal">
         Employee Created!
       </div>
+
+      {/* //Modale Calendrier */}
+      <Calendar className="hide" />
     </div>
   );
 }
