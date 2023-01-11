@@ -1,0 +1,14 @@
+.hide {
+  display: none;
+}
+
+h1 {
+  color: blueviolet;
+}
+/* Date-picker Calendrier  */
+.calendar-container {
+  position: fixed;
+  top: 35%;
+  left: 45%;
+  box-shadow: 5px 5px 25px;
+}

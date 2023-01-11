@@ -2,13 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import Calendar from "../../Components/Calendar/Calendar";
+// import Calendar from "../../Components/Calendar/Calendar";
+import DatePicker from "../../Components/DatePiker/DatePicker";
+import "react-calendar/dist/Calendar.css";
+import "./home.css";
 
 export default function Home() {
   // states
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedInput, setSelectedInput] = useState(null);
+  const [inputRef, setInputRef] = useState(null);
+  const [inputStart, setInputStart] = useState(null);
   //store
   const dispatch = useDispatch();
 
@@ -22,6 +28,22 @@ export default function Home() {
       payload: user,
     });
     console.log(user);
+  };
+
+  const DateSelector = (id) => {
+    setSelectedInput(id);
+    console.log(id);
+    setShowCalendar(true);
+  };
+
+  const handleOnSelect = (date) => {
+    console.log(selectedInput);
+    if (selectedInput === "date-of-birth") {
+      inputRef.value = date.toLocaleDateString();
+    } else if (selectedInput === "start-date") {
+      inputStart.value = date.toLocaleDateString();
+    }
+    setShowCalendar(false);
   };
 
   return (
@@ -56,10 +78,20 @@ export default function Home() {
           />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth" type="text"></input>
+          <input
+            ref={(input) => setInputRef(input)}
+            id="date-of-birth"
+            onClick={() => DateSelector("date-of-birth")}
+            type="text"
+          ></input>
 
           <label htmlFor="start-date">Start Date</label>
-          <input id="start-date" type="text"></input>
+          <input
+            ref={(inputStart) => setInputStart(inputStart)}
+            onClick={() => DateSelector("start-date")}
+            id="start-date"
+            type="text"
+          ></input>
 
           <fieldset className="adress">
             <legend>Adress</legend>
@@ -93,7 +125,11 @@ export default function Home() {
       </div>
 
       {/* //Modale Calendrier */}
-      <Calendar className="hide" />
+      {/* <Calendar className="hide" /> */}
+      <div className={`calendar-container ${showCalendar ? "" : "hide"}`}>
+        {" "}
+        <DatePicker onSelect={handleOnSelect} />
+      </div>
     </div>
   );
 }
