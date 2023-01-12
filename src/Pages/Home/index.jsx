@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 // import Calendar from "../../Components/Calendar/Calendar";
 import DatePicker from "../../Components/DatePiker/DatePicker";
@@ -11,6 +11,9 @@ export default function Home() {
   // states
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [startDate, setStartDate] = useState("");
+  //State for DatePicker
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedInput, setSelectedInput] = useState(null);
   const [inputRef, setInputRef] = useState(null);
@@ -19,28 +22,32 @@ export default function Home() {
   const dispatch = useDispatch();
 
   // Fonctions
+  //reset Form
+  const formRef = useRef(null);
+
   const saveEmployee = async (e) => {
     e.preventDefault();
     console.log("Dans save employé");
-    const user = { firstName, lastName };
+    const user = { firstName, lastName, dateOfBirth, startDate };
     dispatch({
       type: "ADDEMPLOYEE",
       payload: user,
     });
     console.log(user);
+    formRef.current.reset();
   };
 
   const DateSelector = (id) => {
     setSelectedInput(id);
-    console.log(id);
     setShowCalendar(true);
   };
 
   const handleOnSelect = (date) => {
-    console.log(selectedInput);
     if (selectedInput === "date-of-birth") {
+      setDateOfBirth(date.toLocaleDateString());
       inputRef.value = date.toLocaleDateString();
     } else if (selectedInput === "start-date") {
+      setStartDate(date.toLocaleDateString());
       inputStart.value = date.toLocaleDateString();
     }
     setShowCalendar(false);
@@ -58,6 +65,7 @@ export default function Home() {
 
         <h2>Create Employee</h2>
         <form
+          ref={formRef}
           action=""
           onSubmit={saveEmployee}
           method="post"
@@ -125,7 +133,6 @@ export default function Home() {
       </div>
 
       {/* //Modale Calendrier */}
-      {/* <Calendar className="hide" /> */}
       <div className={`calendar-container ${showCalendar ? "" : "hide"}`}>
         {" "}
         <DatePicker onSelect={handleOnSelect} />
