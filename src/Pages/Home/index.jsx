@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-// import Calendar from "../../Components/Calendar/Calendar";
 import DatePicker from "../../Components/DatePiker/DatePicker";
+import SelectMenu from "../../Components/SelectMenu/SelectMenu";
 import "react-calendar/dist/Calendar.css";
 import "./home.css";
 
@@ -13,6 +13,15 @@ export default function Home() {
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [startDate, setStartDate] = useState("");
+  const [adress, setAdress] = useState({
+    adress: {
+      street: "",
+      city: "",
+      zipCode: "",
+      state: "",
+    },
+  });
+  const [department, setDepartment] = useState("");
   //State for DatePicker
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedInput, setSelectedInput] = useState(null);
@@ -25,10 +34,17 @@ export default function Home() {
   //reset Form
   const formRef = useRef(null);
 
-  const saveEmployee = async (e) => {
+  const saveEmployee = (e) => {
     e.preventDefault();
     console.log("Dans save employé");
-    const user = { firstName, lastName, dateOfBirth, startDate };
+    const user = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      startDate,
+      adress,
+      department,
+    };
     dispatch({
       type: "ADDEMPLOYEE",
       payload: user,
@@ -53,6 +69,18 @@ export default function Home() {
     setShowCalendar(false);
   };
 
+  // SelectMenu
+  const selectDepartment = (selected) => {
+    console.log(selected);
+    setDepartment(selected.value);
+  };
+  const selectState = (e) =>
+    setAdress((prevState) => {
+      console.log(e);
+      return {
+        adress: { ...prevState.adress, state: e.value },
+      };
+    });
   return (
     <div>
       <div className="title">
@@ -105,25 +133,68 @@ export default function Home() {
             <legend>Adress</legend>
 
             <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+            <input
+              onChange={(e) =>
+                setAdress((prevState) => {
+                  return {
+                    adress: { ...prevState.adress, street: e.target.value },
+                  };
+                })
+              }
+              id="street"
+              type="text"
+            />
 
             <label htmlFor="city">City</label>
-            <input id="city" type="text" />
+            <input
+              onChange={(e) =>
+                setAdress((prevState) => {
+                  return {
+                    adress: { ...prevState.adress, city: e.target.value },
+                  };
+                })
+              }
+              id="city"
+              type="text"
+            />
 
             <label htmlFor="state">State</label>
-            <select name="state" id="state"></select>
+            {/* <select name="state" id="state"></select> */}
+            <SelectMenu name="state" id="state" fonction={selectState} />
 
             <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" />
+            <input
+              onChange={(e) =>
+                setAdress((prevState) => {
+                  return {
+                    adress: { ...prevState.adress, zipCode: e.target.value },
+                  };
+                })
+              }
+              id="zip-code"
+              type="number"
+            />
           </fieldset>
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
+          <SelectMenu
+            fonction={selectDepartment}
+            options={[
+              { value: "Sales", label: "Sales" },
+              { value: "Marketing", label: "Marketing" },
+              { value: "Engineering", label: "Engineering" },
+              { value: "Human_Ressources", label: "Human_Ressources" },
+              { value: "Legal", label: "Legal" },
+            ]}
+            name="department"
+            id="department"
+          />
+          {/* <select name="department" id="department">
             <option value="sales">Sales</option>
             <option value="marketing">Marketing</option>
             <option value="engineering">Engineering</option>
             <option value="human_resources">Human Resources</option>
             <option value="legal">Legal</option>
-          </select>
+          </select> */}
           <br />
           <button type="submit">Save</button>
         </form>

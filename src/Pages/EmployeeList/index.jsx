@@ -13,7 +13,13 @@ export default function EmployeeList() {
         <h1>Current Employees</h1>
 
         <div className="test-store">
-          nom : {user[0].lastName}, <br></br> prenom:{user[0].firstName}
+          {user.map((e, i) => {
+            return (
+              <div key={i}>
+                Nom : {e.lastName} Prenom : {e.firstName}
+              </div>
+            );
+          })}
         </div>
         <table id="employee-table" className="display"></table>
 
