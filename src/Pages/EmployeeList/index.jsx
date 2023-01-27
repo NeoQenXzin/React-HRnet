@@ -16,17 +16,15 @@ export default function EmployeeList() {
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   });
-
+  // Change ID in simple Number
   const { user } = useSelector((state) => ({
     ...state.boardReducer,
   }));
+  user.forEach((user, index) => {
+    user.id = index + 1;
+  });
 
   console.log(user);
-
-  const fakeData = [
-    { id: 1, firstName: "gilbert", lastName: "Jean" },
-    { id: 2, firstName: "Jeanne", lastName: "Marie" },
-  ];
 
   return (
     <div>
@@ -48,7 +46,6 @@ export default function EmployeeList() {
             value={user}
             sortMode="multiple"
             filters={filters}
-            // filters={filters}
             paginator
             rows={2}
             rowsPerPageOptions={[1, 2, 3]}
@@ -57,13 +54,13 @@ export default function EmployeeList() {
             <Column field="id" header="ID" sortable></Column>
             <Column field="firstName" header="Firstname" sortable></Column>
             <Column field="lastName" header="Lastname" sortable></Column>
+            <Column field="startDate" header="Start date" sortable></Column>
+            <Column field="department" header="Department" sortable></Column>
             <Column
               field="dateOfBirth"
               header="Date of birth"
               sortable
             ></Column>
-            <Column field="startDate" header="Start date" sortable></Column>
-            <Column field="department" header="Department" sortable></Column>
             <Column
               field="adress.adress.street"
               header="Street"

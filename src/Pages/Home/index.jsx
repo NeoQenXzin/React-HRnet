@@ -7,6 +7,8 @@ import SelectMenu from "../../Components/SelectMenu/SelectMenu";
 import "react-calendar/dist/Calendar.css";
 import "./home.css";
 import EasyModale from "react-easy-modale/dist/components/EasyModale";
+import uuid from "react-uuid";
+import { v4 as uuidv4 } from "react-uuid";
 
 export default function Home() {
   // states
@@ -37,8 +39,10 @@ export default function Home() {
 
   const saveEmployee = (e) => {
     e.preventDefault();
+    const id = uuid();
     console.log("Dans save employé");
     const user = {
+      id,
       firstName,
       lastName,
       dateOfBirth,
