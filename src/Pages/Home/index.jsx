@@ -6,6 +6,7 @@ import DatePicker from "../../Components/DatePiker/DatePicker";
 import SelectMenu from "../../Components/SelectMenu/SelectMenu";
 import "react-calendar/dist/Calendar.css";
 import "./home.css";
+import EasyModale from "react-easy-modale/dist/components/EasyModale";
 
 export default function Home() {
   // states
@@ -51,6 +52,17 @@ export default function Home() {
     });
     console.log(user);
     formRef.current.reset();
+    displayModale();
+  };
+
+  const displayModale = () => {
+    const modale = document.querySelector(".modal");
+    modale.classList.remove("hide");
+    console.log(modale);
+    let modalComponent = document.querySelector(".modale-container");
+    if (modalComponent.classList.contains("hide")) {
+      modalComponent.classList.remove("hide");
+    }
   };
 
   const DateSelector = (id) => {
@@ -199,8 +211,9 @@ export default function Home() {
           <button type="submit">Save</button>
         </form>
       </div>
-      <div id="confirmation" className="modal">
-        Employee Created!
+
+      <div id="confirmation" className="modal hide">
+        <EasyModale text="employee created! " active="true" />
       </div>
 
       {/* //Modale Calendrier */}
