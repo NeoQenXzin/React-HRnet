@@ -212,7 +212,9 @@ export default function Home() {
             <option value="legal">Legal</option>
           </select> */}
           <br />
-          <button type="submit">Save</button>
+          <button type="submit" className="button-valid">
+            Save
+          </button>
         </form>
       </div>
 
