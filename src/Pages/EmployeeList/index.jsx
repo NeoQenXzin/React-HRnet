@@ -7,7 +7,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css";
-
 import { FilterMatchMode } from "primereact/api";
 import { InputText } from "primereact/inputtext";
 
@@ -17,14 +16,14 @@ export default function EmployeeList() {
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   });
   // Change ID in simple Number
-  const { user } = useSelector((state) => ({
+  const { users } = useSelector((state) => ({
     ...state.boardReducer,
   }));
-  user.forEach((user, index) => {
+  users.forEach((user, index) => {
     user.id = index + 1;
   });
 
-  console.log(user);
+  console.log(users);
 
   return (
     <div>
@@ -43,7 +42,7 @@ export default function EmployeeList() {
             }
           />
           <DataTable
-            value={user}
+            value={users}
             sortMode="multiple"
             filters={filters}
             paginator
@@ -78,14 +77,6 @@ export default function EmployeeList() {
               sortable
             ></Column>
           </DataTable>
-          {user.map((e, i) => {
-            return (
-              <div key={i}>
-                Nom : {e.lastName} Prenom : {e.firstName} adress:{" "}
-                {e.adress.adress.street}
-              </div>
-            );
-          })}
         </div>
         <table id="employee-table" className="display"></table>
 

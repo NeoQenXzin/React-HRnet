@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 import DatePicker from "../../Components/DatePiker/DatePicker";
 import SelectMenu from "../../Components/SelectMenu/SelectMenu";
 import "react-calendar/dist/Calendar.css";
-import "./home.css";
 import EasyModale from "react-easy-modale/dist/components/EasyModale";
 import uuid from "react-uuid";
+import "./home.css";
 import { v4 as uuidv4 } from "react-uuid";
 
 export default function Home() {
@@ -33,14 +33,24 @@ export default function Home() {
   //store
   const dispatch = useDispatch();
 
+  // Modale
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const hideModal = () => {
+    setIsModalOpen(false);
+  };
   // Fonctions
+
   //reset Form
   const formRef = useRef(null);
 
   const saveEmployee = (e) => {
     e.preventDefault();
     const id = uuid();
-    console.log("Dans save employé");
     const user = {
       id,
       firstName,
@@ -56,17 +66,7 @@ export default function Home() {
     });
     console.log(user);
     formRef.current.reset();
-    displayModale();
-  };
-
-  const displayModale = () => {
-    const modale = document.querySelector(".modal");
-    modale.classList.remove("hide");
-    console.log(modale);
-    let modalComponent = document.querySelector(".modale-container");
-    if (modalComponent.classList.contains("hide")) {
-      modalComponent.classList.remove("hide");
-    }
+    showModal();
   };
 
   const DateSelector = (id) => {
@@ -97,6 +97,7 @@ export default function Home() {
         adress: { ...prevState.adress, state: e.value },
       };
     });
+
   return (
     <div>
       <div className="title">
@@ -204,13 +205,6 @@ export default function Home() {
             name="department"
             id="department"
           />
-          {/* <select name="department" id="department">
-            <option value="sales">Sales</option>
-            <option value="marketing">Marketing</option>
-            <option value="engineering">Engineering</option>
-            <option value="human_resources">Human Resources</option>
-            <option value="legal">Legal</option>
-          </select> */}
           <br />
           <button type="submit" className="button-valid">
             Save
@@ -218,8 +212,15 @@ export default function Home() {
         </form>
       </div>
 
-      <div id="confirmation" className="modal hide">
-        <EasyModale text="employee created! " active="true" />
+      <div id="confirmation">
+        <EasyModale
+          isOpen={isModalOpen}
+          closeModal={hideModal}
+          text="Employee created! "
+          animated1
+          fontWeight="600"
+          fontSize="26px"
+        />
       </div>
 
       {/* //Modale Calendrier */}
