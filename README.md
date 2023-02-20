@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# HRnet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+HRnet is a React-based employee management system that allows you to view a list of employees and filter them based on various parameters. It's built using React, Redux and styled with CSS.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+To get started with the project, clone the repository and run the following command in your terminal:
 
-### `npm start`
+1. Clone the Github repository
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+git clone https://github.com/NeoQenXzin/React-HRnet.git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
 
-### `npm test`
+2.  go to the folder of HRnet
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+cd HRnet
 
-### `npm run build`
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install all project's dependancies.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start apllication
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Dependencies
 
-## Learn More
+The following dependencies are required to run HRnet:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- "primereact": "^9.0.0-beta.1"
+- "react": "^18.2.0"
+- "react-calendar": "^4.0.0"
+- "react-dom": "^18.2.0"
+- "react-easy-modale": "^0.2.1"
+- "react-redux": "^8.0.5"
+- "react-router-dom": "^6.6.1"
+- "react-scripts": "5.0.1"
+- "react-select": "^5.7.0"
+- "react-table": "^7.8.0"
+- "react-uuid": "^2.0.0"
+- "redux": "^4.2.0"
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Features
 
-### Code Splitting
+HRnet comes with the following features:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- View a list of employees
+- Filter employees by name or department or other champs using the table on the EmployeeList page
+- View employee details on the EmployeeList page
 
-### Analyzing the Bundle Size
+## Additional Feature
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+We have added a new feature to HRnet, a modale customizable. This feature has been implemented using the react-easy-modale library. The library can be installed by running the following command:
 
-### Making a Progressive Web App
+```
+npm i react-easy-modale
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+For more information go to https://www.npmjs.com/package/react-easy-modale
 
-### Deployment
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This project is licensed under the MIT License ;)
 
-### `npm run build` fails to minify
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+NeoQenXzin
