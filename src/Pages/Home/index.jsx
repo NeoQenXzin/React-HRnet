@@ -43,6 +43,7 @@ export default function Home() {
   const hideModal = () => {
     setIsModalOpen(false);
   };
+
   // Fonctions
 
   //reset Form
@@ -87,12 +88,10 @@ export default function Home() {
 
   // SelectMenu
   const selectDepartment = (selected) => {
-    console.log(selected);
     setDepartment(selected.value);
   };
   const selectState = (e) =>
     setAdress((prevState) => {
-      console.log(e);
       return {
         adress: { ...prevState.adress, state: e.value },
       };

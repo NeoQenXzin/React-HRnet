@@ -23,8 +23,6 @@ export default function EmployeeList() {
     user.id = index + 1;
   });
 
-  console.log(users);
-
   return (
     <div>
       <div id="employee-div" className="container">

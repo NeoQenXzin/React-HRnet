@@ -8,7 +8,21 @@ h1 {
 /* Date-picker Calendrier  */
 .calendar-container {
   position: fixed;
-  top: 35%;
-  left: 45%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, -65%);
   box-shadow: 5px 5px 25px;
+  z-index: 9999;
+}
+
+@media screen and (max-width: 680px) {
+  .calendar-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 25px;
+    z-index: 9999;
+    max-width: 90%;
+  }
 }
