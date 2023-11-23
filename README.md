@@ -2,6 +2,10 @@
 
 HRnet is a React-based employee management system that allows you to view a list of employees and filter them based on various parameters. It's built using React, Redux and styled with CSS.
 
+![image](https://github.com/NeoQenXzin/React-HRnet/assets/66415285/d27875ec-042e-49dc-aa4c-b054251cba9d)
+
+
+
 ## Getting Started
 
 To get started with the project, clone the repository and run the following command in your terminal:
@@ -59,6 +63,7 @@ HRnet comes with the following features:
 - View a list of employees
 - Filter employees by name or department or other champs using the table on the EmployeeList page
 - View employee details on the EmployeeList page
+  ![image](https://github.com/NeoQenXzin/React-HRnet/assets/66415285/37949860-3b8b-4606-a959-22d4a8493ef4)
 
 ## Additional Feature
 
